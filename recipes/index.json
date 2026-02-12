@@ -1,0 +1,11 @@
+{
+  "recipes": [
+    {
+      "id": "classic-sourdough",
+      "name": "Classic Sourdough",
+      "description": "Classic sourdough with whole wheat",
+      "file": "classic-sourdough.json"
+    }
+  ],
+  "defaultRecipe": "classic-sourdough"
+}

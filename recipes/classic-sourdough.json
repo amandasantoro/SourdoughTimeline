@@ -1,0 +1,178 @@
+{
+  "id": "classic-sourdough",
+  "name": "Classic Sourdough",
+  "description": "Classic sourdough with whole wheat",
+  "sections": [
+    {
+      "id": "mix-ins",
+      "name": "Mixing",
+      "stageIds": ["autolyse", "mix-levain", "mix-salt"],
+      "collapsible": true
+    },
+    {
+      "id": "bulk-fermentation",
+      "name": "Bulk Fermentation",
+      "stageIds": ["fold", "lamination"],
+      "collapsible": true,
+      "subSections": [
+        {
+          "id": "stretch-and-folds",
+          "name": "Stretch & Folds",
+          "stageIds": ["fold-1", "fold-2", "fold-3"],
+          "collapsible": true
+        }
+      ]
+    },
+    {
+      "id": "final-shape",
+      "name": "Shape & Rest",
+      "stageIds": ["shape", "bench-rest", "refrigerate"],
+      "collapsible": true
+    }
+  ],
+  "stages": [
+    {
+      "id": "autolyse",
+      "name": "Autolyse",
+      "shortName": "Autolyse",
+      "instructionsFile": "autolyse.md",
+      "durationMinutes": 180,
+      "colorGroup": "stage",
+      "ingredientInputs": ["bread-flour", "whole-wheat-flour", "water"],
+      "subStages": null
+    },
+    {
+      "id": "mix-levain",
+      "name": "Mix the Levain",
+      "shortName": "Mix Levain",
+      "instructionsFile": "mix-levain.md",
+      "durationMinutes": 30,
+      "colorGroup": "stage",
+      "ingredientInputs": ["starter"],
+      "helperTimerMinutes": 4,
+      "subStages": null
+    },
+    {
+      "id": "mix-salt",
+      "name": "Mix in the Salt",
+      "shortName": "Mix Salt",
+      "instructionsFile": "mix-salt.md",
+      "durationMinutes": 30,
+      "colorGroup": "stage",
+      "ingredientInputs": ["salt"],
+      "helperTimerMinutes": 4,
+      "subStages": null
+    },
+    {
+      "id": "fold",
+      "name": "Fold",
+      "shortName": "Fold",
+      "instructionsFile": "initial-fold.md",
+      "durationMinutes": 30,
+      "colorGroup": "stage",
+      "subStages": null
+    },
+    {
+      "id": "lamination",
+      "name": "Lamination",
+      "shortName": "Lamination",
+      "instructionsFile": "lamination.md",
+      "durationMinutes": 45,
+      "colorGroup": "stage",
+      "subStages": null
+    },
+    {
+      "id": "stretch-and-folds",
+      "name": "Stretch and Folds",
+      "shortName": "Stretch & Fold",
+      "instructionsFile": null,
+      "durationMinutes": 0,
+      "colorGroup": "stage",
+      "subStages": [
+        {
+          "id": "fold-1",
+          "name": "Fold #1",
+          "shortName": "Fold #1",
+          "instructionsFile": "stretch-fold-1.md",
+          "durationMinutes": 45
+        },
+        {
+          "id": "fold-2",
+          "name": "Fold #2",
+          "shortName": "Fold #2",
+          "instructionsFile": "stretch-fold-2.md",
+          "durationMinutes": 45
+        },
+        {
+          "id": "fold-3",
+          "name": "Fold #3",
+          "shortName": "Fold #3",
+          "instructionsFile": "stretch-fold-3.md",
+          "durationMinutes": 90
+        }
+      ]
+    },
+    {
+      "id": "shape",
+      "name": "Shape",
+      "shortName": "Shape",
+      "instructionsFile": "shape.md",
+      "durationMinutes": 0,
+      "colorGroup": "stage",
+      "subStages": null
+    },
+    {
+      "id": "bench-rest",
+      "name": "Bench Rest",
+      "shortName": "Bench Rest",
+      "instructionsFile": "bench-rest.md",
+      "durationMinutes": 20,
+      "colorGroup": "stage",
+      "subStages": null
+    },
+    {
+      "id": "refrigerate",
+      "name": "Refrigerate Overnight",
+      "shortName": "Refrigerate",
+      "instructionsFile": "refrigerate.md",
+      "durationMinutes": 0,
+      "colorGroup": "stage",
+      "subStages": null
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "bread-flour",
+      "name": "AP Flour",
+      "defaultAmount": 255,
+      "unit": "g"
+    },
+    {
+      "id": "whole-wheat-flour",
+      "name": "Whole Wheat Flour",
+      "defaultAmount": 70,
+      "unit": "g"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "defaultAmount": 255,
+      "unit": "g"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "defaultAmount": 7.5,
+      "unit": "g"
+    },
+    {
+      "id": "starter",
+      "name": "Sourdough Starter",
+      "defaultAmount": 65,
+      "unit": "g"
+    }
+  ],
+  "colorGroups": {
+    "stage": "#C8DCD8"
+  }
+}

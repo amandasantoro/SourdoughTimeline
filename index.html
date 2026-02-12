@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sourdough Timeline</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍞</text></svg>">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header with Timeline -->
+        <header class="timeline-header">
+            <div class="header-row">
+                <button class="home-btn" id="home-btn" title="Start New Bake">🏠</button>
+                <h1 class="app-title">🍞 Sourdough Timeline</h1>
+                <div class="header-spacer"></div>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-sections" id="timeline">
+                    <!-- Timeline sections will be injected here -->
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Welcome Screen -->
+            <section id="welcome-screen" class="screen active">
+                <div class="card welcome-card">
+                    <h2>🌾 Sourdough Starter Fed!</h2>
+                    <p>Great! Let's track the steps of your bake.</p>
+                    
+                    <div class="recipe-selector">
+                        <label for="recipe-select">Recipe</label>
+                        <select id="recipe-select" class="recipe-select">
+                            <!-- Populated by JavaScript -->
+                        </select>
+                    </div>
+                    
+                    <div class="welcome-inputs">
+                        <div class="welcome-input-group">
+                            <label for="starter-fed-time">Starter Fed At</label>
+                            <input type="time" id="starter-fed-time" class="time-input">
+                        </div>
+                        
+                        <div class="welcome-input-group">
+                            <label for="recipe-multiplier">Recipe Quantity</label>
+                            <div class="multiplier-input-wrapper">
+                                <input type="number" id="recipe-multiplier" class="multiplier-input" value="1" min="0.1" step="0.1">
+                                <span class="multiplier-label">×</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-success btn-large" id="start-bake-btn">
+                        Start Baking!
+                    </button>
+                </div>
+            </section>
+
+            <!-- Stage Screen -->
+            <section id="stage-screen" class="screen">
+                <div class="card stage-card" id="stage-card">
+                    <span class="viewing-badge" id="viewing-badge">✓ Completed Stage</span>
+                    
+                    <div class="stage-header">
+                        <span class="stage-number" id="stage-number">1</span>
+                        <h2 class="stage-name" id="stage-name">Stage Name</h2>
+                    </div>
+                    
+                    <!-- Past stage info (only shown when viewing completed stage) -->
+                    <div class="past-stage-info" id="past-stage-info" style="display: none;">
+                        <p><strong>Duration:</strong> <span id="past-stage-duration">--</span></p>
+                    </div>
+                    
+                    <!-- Ingredient Input -->
+                    <div class="ingredient-input-section" id="ingredient-section" style="display: none;">
+                        <h3>Record Ingredients</h3>
+                        <div class="ingredient-inputs" id="ingredient-inputs">
+                            <!-- Ingredient inputs will be injected here -->
+                        </div>
+                    </div>
+                    
+                    <div class="stage-content-wrapper">
+                        <div class="stage-instructions-wrapper">
+                            <div class="stage-instructions" id="stage-instructions">
+                                <!-- Markdown content will be injected here -->
+                            </div>
+                        </div>
+                        
+                        <div class="stage-sidebar">
+                            <!-- Helper Timer (for mixing stages) -->
+                            <div class="helper-timer-box" id="helper-timer-box" style="display: none;">
+                                <h4>Mix Timer</h4>
+                                <div class="helper-timer-display" id="helper-timer-display">04:00</div>
+                                <button class="btn btn-primary btn-small" id="helper-timer-btn">Start</button>
+                            </div>
+                            
+                            <!-- Tips Box -->
+                            <div class="tips-box" id="tips-box" style="display: none;">
+                                <h4>💡 Tips</h4>
+                                <div class="tips-content" id="tips-content">
+                                    <!-- Tips will be injected here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stage-actions" id="stage-actions">
+                        <button class="btn btn-secondary" id="skip-stage-btn">
+                            Skip This Stage
+                        </button>
+                        <button class="btn btn-success" id="complete-stage-btn">
+                            Complete & Start Timer
+                        </button>
+                        <button class="btn btn-back btn-large" id="back-to-current-btn" style="display: none;">
+                            ← Back to Current Stage
+                        </button>
+                        <button class="btn btn-small btn-skip-to" id="skip-to-stage-btn" style="display: none;">
+                            Skip to this stage
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Starter Wait Timer Screen -->
+            <section id="starter-timer-screen" class="screen">
+                <div class="card timer-card">
+                    <h2 class="timer-label">⏳ Waiting for Starter</h2>
+                    <p class="starter-wait-note">Your starter needs more time to develop before starting the bake.</p>
+                    
+                    <div class="timer-display" id="starter-timer-display">
+                        <span class="timer-hours" id="starter-timer-hours">00</span>
+                        <span class="timer-separator">:</span>
+                        <span class="timer-minutes" id="starter-timer-minutes">00</span>
+                        <span class="timer-separator">:</span>
+                        <span class="timer-seconds" id="starter-timer-seconds">00</span>
+                    </div>
+                    
+                    <div class="timer-progress-container">
+                        <div class="timer-progress" id="starter-timer-progress"></div>
+                    </div>
+                    
+                    <p class="timer-note" id="starter-timer-note">Time remaining until starter is ready...</p>
+                    
+                    <div class="timer-actions">
+                        <button class="btn btn-success btn-large" id="starter-ready-btn">
+                            Begin Autolyse
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timer Screen -->
+            <section id="timer-screen" class="screen">
+                <div class="card timer-card">
+                    <h2 class="timer-label">Rest Time Until Next Stage</h2>
+                    <p class="next-stage-label" id="next-stage-label">Next: Stage Name</p>
+                    
+                    <div class="timer-display" id="timer-display">
+                        <span class="timer-hours" id="timer-hours">00</span>
+                        <span class="timer-separator">:</span>
+                        <span class="timer-minutes" id="timer-minutes">00</span>
+                        <span class="timer-separator">:</span>
+                        <span class="timer-seconds" id="timer-seconds">00</span>
+                    </div>
+                    
+                    <div class="timer-progress-container">
+                        <div class="timer-progress" id="timer-progress"></div>
+                    </div>
+                    
+                    <p class="timer-note" id="timer-note">Timer running...</p>
+                    
+                    <div class="timer-actions">
+                        <button class="btn btn-success btn-large" id="continue-btn">
+                            Continue to Next Stage
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary Screen -->
+            <section id="summary-screen" class="screen">
+                <div class="card summary-card">
+                    <h2>🎉 Bake Complete!</h2>
+                    <p class="summary-subtitle">Here's your bake summary. Copy and paste to your notes!</p>
+                    
+                    <div class="summary-content" id="summary-content">
+                        <!-- Summary will be injected here -->
+                    </div>
+                    
+                    <div class="summary-actions">
+                        <button class="btn btn-secondary" id="copy-summary-btn">
+                            📋 Copy to Clipboard
+                        </button>
+                        <button class="btn btn-primary" id="new-bake-btn">
+                            Start New Bake
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Alert Modal -->
+        <div class="modal-overlay" id="alert-modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-icon">⏰</div>
+                <h2>Timer Complete!</h2>
+                <p id="alert-message">Time for the next stage.</p>
+                <button class="btn btn-primary" id="dismiss-alert-btn">
+                    Got it!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>
