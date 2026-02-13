@@ -1,6 +1,8 @@
 # 🍞 Sourdough Timeline
 
 A beautiful web app to track your sourdough bread baking journey. Manage timers, follow recipe steps, and create detailed bake logs.
+<img width="1198" height="786" alt="image" src="https://github.com/user-attachments/assets/6a5e7d75-cbe4-4e64-a8f9-69ec164fc093" />
+
 
 ![Sourdough Timeline](https://via.placeholder.com/800x400/FDF8F5/8B7355?text=Sourdough+Timeline)
 
